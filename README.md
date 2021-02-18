@@ -1,4 +1,4 @@
-# Pokedex
+# Movie API
 
 CareerFoundry Movie API project
 
