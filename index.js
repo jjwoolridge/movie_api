@@ -51,7 +51,7 @@ app.get('/', (req, res) => {
   res.send('you found the landing page');
 });
 
-app.get('/books', (req, res) => {
+app.get('/movies', (req, res) => {
   res.json(topMovies);
 });
 
