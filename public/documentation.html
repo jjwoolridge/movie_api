@@ -5,7 +5,79 @@
     <title>Jill and Alex's List</title>
   </head>
   <body>
-    <h1>Doc page of Jill and list<h1>
-    <p>This document is a compilation of the movies and shows Jill and Alex have watched or want to watch together.</p>
+    <h1>Doc page of Jill and Alex\'s list<h1>
+    <p>This document is a compilation of the movies and shows Jill and Alex have watched or want to watch together</p>
+    <table>
+      <tr>
+        <th>Description</th>
+        <th>URL with query parameters</th>
+        <th>HTTP Method</th>
+        <th>Request Body Format</th>
+        <th>Response Body Format</th>
+      </tr>
+      <tr>
+        <td>Gets list of movies</td>
+        <td>/movies</td>
+        <td>GET</td>
+        <td>none</td>
+        <td>JSON object with movie list</td>
+      </tr>
+      <tr>
+        <td>Gets details for one movie</td>
+        <td>/movies/:title</td>
+        <td>GET</td>
+        <td>none</td>
+        <td>JSON object with data about a movie</td>
+      </tr>
+      <tr>
+        <td>Gets description of a movie by title</td>
+        <td>/movies/:title/description</td>
+        <td>GET</td>
+        <td>none</td>
+        <td>JSON object with description of a movie</td>
+      </tr>
+      <tr>
+        <td>Gets info for a director</td>
+        <td>/movies/director/:name</td>
+        <td>GET</td>
+        <td>none</td>
+        <td>JSON object with director info</td>
+      </tr>
+      <tr>
+        <td>Creates a new User</td>
+        <td>/users</td>
+        <td>POST</td>
+        <td>JSON object with info about new user, makes sure username exists in request</td>
+        <td>Message to confirm or deny addition of user</td>
+      </tr>
+      <tr>
+        <td>Changes a username</td>
+        <td>/users/:email/:username</td>
+        <td>PUT</td>
+        <td>none</td>
+        <td>Message to confirm or deny update of username by email address</td>
+      </tr>
+      <tr>
+        <td>Adds a favorite movie to a user's list</td>
+        <td>/users/:username/favorites/:movie</td>
+        <td>PUT</td>
+        <td>none</td>
+        <td>Array of favorite movies</td>
+      </tr>
+      <tr>
+        <td>Deletes a favorite movie to a user's list</td>
+        <td>/users/:username/favorites/:movie</td>
+        <td>DELETE</td>
+        <td>none</td>
+        <td>Message confirming or denying movie deletion</td>
+      </tr>
+      <tr>
+        <td>Deletes a user</td>
+        <td>/users/:username</td>
+        <td>DELETE</td>
+        <td>none</td>
+        <td>Message confirming or denying user deletion</td>
+      </tr>
+    </table>
   </body>
 </html>
