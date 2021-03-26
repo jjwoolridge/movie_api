@@ -24,64 +24,44 @@
       </tr>
       <tr>
         <td>Gets details for one movie</td>
-        <td>/movies/:title</td>
+        <td>/movies/:Title</td>
         <td>GET</td>
         <td>none</td>
         <td>JSON object with data about a movie</td>
       </tr>
       <tr>
         <td>Gets description of a movie by title</td>
-        <td>/movies/:title/description</td>
+        <td>/movies/:Title/description</td>
         <td>GET</td>
         <td>none</td>
-        <td>JSON object with description of a movie</td>
+        <td>String object with description of a movie</td>
       </tr>
       <tr>
-        <td>Gets year of a movie by title</td>
-        <td>/movies/:title/year</td>
-        <td>GET</td>
-        <td>none</td>
-        <td>JSON object with year of a movie</td>
-      </tr>
-      <tr>
-        <td>Gets genre of a movie by title</td>
-        <td>/movies/:title/genre</td>
-        <td>GET</td>
-        <td>none</td>
-        <td>JSON object with genre of a movie</td>
-      </tr>
       <tr>
         <td>Gets director of a movie by title</td>
-        <td>/movies/:title/director</td>
+        <td>/movies/:Title/director</td>
         <td>GET</td>
         <td>none</td>
         <td>JSON object with director, bio, and birth/death of a movie</td>
       </tr>
       <tr>
         <td>Gets info for a director</td>
-        <td>/movies/director/:name</td>
+        <td>/movies/director/:Name</td>
         <td>GET</td>
         <td>none</td>
         <td>JSON object with director info</td>
       </tr>
       <tr>
-        <td>Gets movies of a certain genre</td>
-        <td>/movies/:genre</td>
+        <td>Gets genre description</td>
+        <td>/movies/genre/:Genre</td>
         <td>GET</td>
         <td>none</td>
-        <td>JSON object with all movies in a genre</td>
+        <td>JSON object with description of a certain genre</td>
       </tr>
       <tr>
-        <td>Gets featured movies</td>
-        <td>/movies/featured</td>
+        <td>Gets user information</td>
+        <td>/users/:Username</td>
         <td>GET</td>
-        <td>none</td>
-        <td>JSON object with all featured movies</td>
-      </tr>
-      <tr>
-        <td>Toggles featured or unfeatured</td>
-        <td>/movies/:title/featured</td>
-        <td>PUT</td>
         <td>none</td>
         <td>JSON object with message confirming new featured status</td>
       </tr>
@@ -89,29 +69,43 @@
         <td>Creates a new User</td>
         <td>/users</td>
         <td>POST</td>
-        <td>JSON object with info about new user, makes sure username exists in request</td>
+        <td>
+          JSON object with info about new user, makes sure username exists in request. Format:</br>
+          {</br>
+            "Name" : STRING </br>
+            "Birthday " : DATE </br>
+            "Username" : STRING </br>
+            "Password" : STRING </br>
+            "Email" : STRING </br>
+          }
+
+        </td>
         <td>Message to confirm or deny addition of user</td>
       </tr>
       <tr>
         <td>Changes a username</td>
-        <td>/users/:email/:username</td>
+        <td>/users/:Username</td>
         <td>PUT</td>
-        <td>none</td>
-        <td>Message to confirm or deny update of username by email address</td>
+        <td>JSON object with user including new username. Format:</br>
+          "Username" : STRING </br>
+          "Password" : STRING </br>
+          "Email" : STRING </br>
+        </td>
+        <td>JSON object with user showing updated username.</td>
       </tr>
       <tr>
         <td>Adds a favorite movie to a user's list</td>
-        <td>/users/:username/favorites/:movie</td>
+        <td>/users/:Username/favorites/:MovieID</td>
         <td>PUT</td>
         <td>none</td>
-        <td>Array of favorite movies</td>
+        <td>JSON object with user and updated favorites list.</td>
       </tr>
       <tr>
         <td>Deletes a favorite movie to a user's list</td>
         <td>/users/:username/favorites/:movie</td>
         <td>DELETE</td>
         <td>none</td>
-        <td>Message confirming or denying movie deletion</td>
+        <td>Returns JSON object with User stats and movie list withuot movie.</td>
       </tr>
       <tr>
         <td>Deletes a user</td>
