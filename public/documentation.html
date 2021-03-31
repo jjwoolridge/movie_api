@@ -85,7 +85,7 @@
       <tr>
         <td>Changes a username</td>
         <td>/users/:Username</td>
-        <td>PUT</td>
+        <td>POST</td>
         <td>JSON object with user including new username. Format:</br>
           "Username" : STRING </br>
           "Password" : STRING </br>
@@ -102,14 +102,14 @@
       </tr>
       <tr>
         <td>Deletes a favorite movie to a user's list</td>
-        <td>/users/:username/favorites/:movie</td>
+        <td>/users/:Username/favorites/:MovieID</td>
         <td>DELETE</td>
         <td>none</td>
         <td>Returns JSON object with User stats and movie list withuot movie.</td>
       </tr>
       <tr>
         <td>Deletes a user</td>
-        <td>/users/:email</td>
+        <td>/users/:Username</td>
         <td>DELETE</td>
         <td>none</td>
         <td>Message confirming or denying user deletion</td>
