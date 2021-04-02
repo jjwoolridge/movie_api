@@ -1,5 +1,5 @@
 //import express module locally and declares variable to use express for web configuration
-const express = require("express"),
+const express = require('express'),
   morgan = require('morgan'),
   bodyParser = require('body-parser'),
   mongoose = require('mongoose'),
