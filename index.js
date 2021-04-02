@@ -8,8 +8,13 @@ const express = require("express"),
 const { check, validationResult } = require('express-validator');
 
 const cors = require('cors');
+<<<<<<< HEAD
  app.use(cors());
 // let allowedOrgins = ['http://heroku.com'];
+=======
+// app.use(cors());
+let allowedOrgins = ['http://heroku.com'];
+>>>>>>> dd7b75a516bef1d7a7e3fa0e54bdd2316940539d
 
 // app.use(cors({
 //   origin: (origin, callback) => {
