@@ -5,6 +5,22 @@ const express = require("express"),
   mongoose = require('mongoose'),
   app = express();
 
+const { check, validationResult } = require('express-validator');
+
+const cors = require('cors');
+Let allowedOrgins = ['http://localhost:8008', 'http://testsite.com'];
+
+app.use(cors({
+  origin: (origin, callback) => {
+    if(!origin) return callback(null, true);
+    if(allowedOrigins.indexOf(origin) === -1) {  // aka not in set
+        let message = 'The CORS policy for this application doesn\'t allow access from the origin ' + origin;
+        return callback(new Error(message), false);
+    }
+    return callback(null, true);
+  }
+}));
+
 mongoose.connect('mongodb://localhost:27017/myFlixDB',{useNewUrlParser:true, useUnifiedTopology:true});
 mongoose.set('useFindAndModify', false);
 
@@ -118,7 +134,23 @@ app.get('/users', passport.authenticate('jwt', {session: false}), (req, res) => 
 });
 
 // adds a new user
-app.post('/users', (req,res) => {
+app.post('/users', [
+  //validation logic
+  check('Username', 'Username is required.').not().isEmpty(),
+  check('Username', 'Username must be at least 6 characters').isLength({min:6}),
+  check('Username', 'Username must be less than 12 characters.').isLength({max:12}),
+  check('Username', 'Username must be alphanumeric.').isAlphanumeric(),
+  check('Password', 'Password is required').not().isEmpty(),
+  check('Password', 'Password must be at least 8 characters').isLength({min:8}),
+  check('Email', 'Please enter valid email.').isEmail()
+], (req,res) => {
+  let errors = validationResult(req);
+
+  if (!errors.isEmpty()) {
+    return res.status(422).json({errors: errors.array()});
+  }
+
+  let hashedPassword = Users.hashPassword(req.body.Password);
   Users.findOne({Username: req.body.Username})
   .then ((user) => {
     if (user) {
@@ -127,7 +159,7 @@ app.post('/users', (req,res) => {
       Users
         .create({
           Username: req.body.Username,
-          Password: req.body.Password,
+          Password: hashedPassword,
           Email: req.body.Email,
           Birthday: req.body.Birthday
         })
@@ -227,6 +259,7 @@ app.delete('/users/:Username/favorites/:MovieID', passport.authenticate('jwt', {
   });
 });
 
-app.listen(8080, () => {
-  console.log('Your app is listening on port 8080');
+const.port = process.env.PORT || 8080;
+app.listen(port, '0.0.0.0', () => {
+  console.log('Listening on Port ' + port);
 });
