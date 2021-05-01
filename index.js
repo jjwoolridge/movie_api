@@ -27,12 +27,10 @@ const Models = require('./models.js');
 const Movies=Models.Movie;
 const Users=Models.User;
 
-
 app.use((err, req, res, next) => {
   console.error(err.stack);
   res.status(500).send('didn\'t work');
 });
-
 
 //GET requests
 app.get('/', (req, res) => {
@@ -135,7 +133,6 @@ app.post('/users', [
   check('Password', 'Password is required').not().isEmpty(),
   check('Password', 'Password must be at least 8 characters').isLength({min:8}),
   check('Email', 'Please enter valid email.').isEmail(),
-  check('Name', 'But what\'s your name?').not().isEmpty()
 ], (req,res) => {
   let errors = validationResult(req);
 
