@@ -134,7 +134,8 @@ app.post('/users', [
   check('Username', 'Username must be alphanumeric.').isAlphanumeric(),
   check('Password', 'Password is required').not().isEmpty(),
   check('Password', 'Password must be at least 8 characters').isLength({min:8}),
-  check('Email', 'Please enter valid email.').isEmail()
+  check('Email', 'Please enter valid email.').isEmail(),
+  check('Name', 'But what\'s your name?').not().isEmpty()
 ], (req,res) => {
   let errors = validationResult(req);
 
@@ -153,6 +154,7 @@ app.post('/users', [
           Username: req.body.Username,
           Password: hashedPassword,
           Email: req.body.Email,
+          Name: req.body.Name,
           Birthday: req.body.Birthday
         })
         .then ((user) => {res.status(201).json(user); })
