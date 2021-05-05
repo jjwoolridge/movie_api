@@ -33,7 +33,7 @@ module.exports = (router) => {
       }
       req.login(user, {session: false}, (error) => {
         if(error) {
-          res.send(error);
+          res.send(error + 'router api error /login');
         }
         let token = generateJWTToken(user.toJSON());
         return res.json({user,token});
