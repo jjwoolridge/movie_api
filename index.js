@@ -26,7 +26,7 @@ app.use('*',cors());
 //mongoose.connect('mongodb://localhost:27017/myFlixDB',{useNewUrlParser:true, useUnifiedTopology:true});
 mongoose.connect(process.env.CONNECTION_URI,{useNewUrlParser:true, useUnifiedTopology:true});
 //mongoose.connect('mongodb+srv://JJWoolridge:Bananapip22j@jw-cf-movie-api.otomx.mongodb.net/myFlixDB?retryWrites=true&w=majority', {useNewUrlParser:true, useUnifiedTopology:true});
-//mongoose.set('FindAndModify', false);
+mongoose.set('FindAndModify', false);
 
 app.use(morgan('common'));
 app.use(bodyParser.json());
