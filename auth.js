@@ -26,6 +26,7 @@ module.exports = (router) => {
       console.log(error+ ' ' + user);
       if(error || !user) {
         return res.status(400).json({
+          error: error,
           message: 'Something is not right in .post/login',
           user: user
         });
