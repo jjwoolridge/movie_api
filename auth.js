@@ -2,6 +2,8 @@ const jwtSecret = 'your_jwt_secret'; // must be same key used in JWTStrategy in 
 
 const jwt = require('jsonwebtoken'),
   passport = require('passport'),
+  express = require('express'),
+  app = express(),
   bodyParser = require('body-parser');
 
 app.use(bodyParser.json());
