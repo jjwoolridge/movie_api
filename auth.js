@@ -6,23 +6,6 @@ const jwt = require('jsonwebtoken'),
   app = express(),
   bodyParser = require('body-parser');
 
-  const { check, validationResult } = require('express-validator');
-  
-  const cors = require('cors');
-  
-  let allowedOrigins = ['http://localhost:8080','http://localhost:1234','http://testsite.com'];
-  
-  app.use(cors({
-    origin: (origin, callback) => {
-      if(!origin) return callback(null,true);
-      if(allowedOrigins.indexOf(origin )=== -1) {
-        let message = 'The CORS policy for this app does not allow access from this origin';
-        return callback(new Error(message), false);
-        }
-        return callback(null,true);
-    }
-  }));
-
 app.use(bodyParser.json());
 
 require('./passport'); //local passport file
@@ -37,7 +20,6 @@ let generateJWTToken = (user) => {
 
 /* POST login */
 module.exports = (router) => {
-  console.log('made it to api');
   router.post('/login', (req,res) => {
     passport.authenticate('local', {session: false}, (error, user, info) => {
       console.log(req.body + 'router post ./login');

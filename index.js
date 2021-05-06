@@ -14,15 +14,13 @@ let allowedOrigins = ['http://localhost:8080','http://localhost:1234','http://te
 app.use(cors({
   origin: (origin, callback) => {
     if(!origin) return callback(null,true);
-    if(allowedOrigins.indexOf(origin )=== -1) {
-      let message = 'The CORS policy for this app does not allow access from this origin';
+    if(allowedOrigins.indexOf(origin) === -1) {
+      let message = 'The CORS policy for this app does not allow access from this origin: ' + origin ;
       return callback(new Error(message), false);
       }
       return callback(null,true);
   }
 }));
-
-
 
 //mongoose.connect('mongodb://localhost:27017/myFlixDB',{useNewUrlParser:true, useUnifiedTopology:true});
 mongoose.connect(process.env.CONNECTION_URI,{useNewUrlParser:true, useUnifiedTopology:true});
