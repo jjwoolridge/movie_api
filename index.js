@@ -24,8 +24,9 @@ app.use('*',cors());
 // }));
 
 //mongoose.connect('mongodb://localhost:27017/myFlixDB',{useNewUrlParser:true, useUnifiedTopology:true});
-mongoose.connect(process.env.CONNECTION_URI,{useNewUrlParser:true, useFindandModify:false});
+mongoose.connect(process.env.CONNECTION_URI,{useNewUrlParser:true});
 mongoose.set('useUnifiedTopology', true);
+mongoose.set('useFindandModify',false);
 
 app.use(morgan('common'));
 app.use(bodyParser.json());
