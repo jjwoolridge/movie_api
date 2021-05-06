@@ -3,11 +3,12 @@ const express = require('express'),
   morgan = require('morgan'),
   bodyParser = require('body-parser'),
   mongoose = require('mongoose'),
+  cors = require('cors');
   app = express();
 
 const { check, validationResult } = require('express-validator');
 
-const cors = require('cors');
+app.options('*', cors());
 app.use('*',cors());
 
 // let allowedOrigins = ['http://localhost:8080','http://localhost:1234','http://testsite.com'];
