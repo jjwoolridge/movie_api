@@ -127,8 +127,8 @@ app.get('/movies/director/:Director/', passport.authenticate('jwt', {session: fa
 //CRUD options below relate to user collection
 
 // return list of users
-app.get('/users', function (req, res) {
-//app.get('/users', passport.authenticate('jwt', {session: false}), (req, res) => {
+//app.get('/users', function (req, res) {
+app.get('/users', passport.authenticate('jwt', {session: false}), (req, res) => {
   Users.find()
   .then(users => {
     res.status(201).json(users);
