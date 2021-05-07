@@ -28,13 +28,13 @@ module.exports = (router) => {
       if(error || !user) {
         return res.status(400).json({
           error: error,
-          message: 'Something is not right in .post/login',
+          message: 'Something is not right in auth.js - cannot app.post(login info)',
           user: user
         });
       }
       req.login(user, {session: false}, (error) => {
         if(error) {
-          res.send(error + 'router api error /login');
+          res.send(error);
         }
         let token = generateJWTToken(user.toJSON());
         return res.json({user,token});
