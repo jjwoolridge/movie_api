@@ -140,7 +140,7 @@ app.get('/users', passport.authenticate('jwt', {session: false}), (req, res) => 
 });
 
 // adds a new user
-app.post('/register', [
+app.post('/users', [
   //validation logic
   check('Username', 'Username is required.').not().isEmpty(),
   check('Username', 'Username must be at least 6 characters').isLength({min:6}),
