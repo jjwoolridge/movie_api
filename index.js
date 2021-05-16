@@ -200,12 +200,15 @@ app.get('/users/:Username', passport.authenticate('jwt', {session: false}), (req
 });
 
 
-// changes username by email
+// changes user details by username
 app.put('/users/:Username', passport.authenticate('jwt', {session: false}), (req,res) => {
   Users.findOneAndUpdate({Username:req.params.Username}, {$set: {
     Username: req.body.Username,
     Password: req.body.Password,
-    Email: req.body.Email
+    Email: req.body.Email,
+    Name: req.body.Name,
+    Birthday: req.body.Birthday,
+    FavoriteMovies: req.body.FavoriteMovies
   }},
   {new: true},
   (err, updatedUser) => {
